@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nice.mapper.BbsUserMapper">
+    <select id="queryBbsUserIdToBbsUserName" parameterType="java.lang.String" resultType="java.math.BigInteger" >
+        select bbs_user_id from bbs_user where bbs_user_name = #{bbsUserName};
+    </select>
+
+    <select id="queryBbsUserPasswordByBbsUserName" parameterType="java.lang.String" resultType="java.lang.String">
+        select bbs_user_password from bbs_user where bbs_user_name = #{bbsUserName};
+    </select>
+
+    <select id="querySaltByBbsUserName" parameterType="java.lang.String" resultType="java.lang.String">
+        select salt from bbs_user where bbs_user_name=#{bbsUserName};
+    </select>
+</mapper>

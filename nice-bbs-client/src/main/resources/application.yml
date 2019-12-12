@@ -1,0 +1,21 @@
+#数据库配置
+spring:
+  datasource:
+    url: jdbc:mysql://39.97.179.164:3306/nice_bbs?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: nice
+    driver-class-name: com.mysql.jdbc.Driver
+  #解决bean重复定义
+  main:
+    allow-bean-definition-overriding: true
+
+#mybatis配置
+mybatis:
+  configuration:
+#驼峰命名
+    map-underscore-to-camel-case: true
+#mapper路径
+  mapper-locations: classpath:com/nice/mapper/*.xml
+#实体类包名
+  type-aliases-package: com.nice.domain
+

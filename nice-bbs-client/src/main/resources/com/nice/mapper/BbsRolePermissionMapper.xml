@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nice.mapper.BbsRolePermissionMapper">
+    <select id="queryBbsPermissionIdByBbsRoleId" parameterType="java.math.BigInteger" resultType="java.math.BigInteger" >
+        select bbs_permission_id from bbs_role_permission where bbs_role_id = #{bbsRoleId};
+    </select>
+</mapper>
