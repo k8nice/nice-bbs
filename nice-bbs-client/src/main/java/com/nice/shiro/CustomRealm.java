@@ -14,17 +14,14 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * 自定义Realm
  * The current class is   ...
  * This ide name is IntelliJ IDEA.
  * The current project name is shiro-test.
@@ -39,36 +36,38 @@ public class CustomRealm extends AuthorizingRealm {
 
 
 
-//    @Autowired
-//    private UserDao userDao;
-    @Autowired
+/*    @Autowired
+    private UserDao userDao;*/
+
+
+    @Autowired(required = false)
     private  BbsUserMapper bbsUserMapper;
 
-    @Autowired
+    @Autowired(required = false)
     private  BbsUserRoleMapper bbsUserRoleMapper;
 
-    @Autowired
+    @Autowired(required = false)
     private  BbsRolePermissionMapper bbsRolePermissionMapper;
 
-    @Autowired
+    @Autowired(required = false)
     private  BbsPermissionMapper bbsPermissionMapper;
 
-    @Autowired
+    @Autowired(required = false)
     private  BbsRoleMapper bbsRoleMapper;
 
 //    public static CustomRealm customRealm;
 
 
-//    @Autowired
-//    @Override
-//    @Autowired
-/*    @PostConstruct
+/*    @Autowired
+    @Override
+    @Autowired
+    @PostConstruct
     public  void init() {
-//        bbsUserMapper = this;
-//        bbsUserRoleMapper = this.bbsUserRoleMapper;
-//        bbsRolePermissionMapper = this.bbsRolePermissionMapper;
-//        bbsPermissionMapper = this.bbsPermissionMapper;
-//        bbsRoleMapper = this.bbsRoleMapper;
+        bbsUserMapper = this;
+        bbsUserRoleMapper = this.bbsUserRoleMapper;
+        bbsRolePermissionMapper = this.bbsRolePermissionMapper;
+        bbsPermissionMapper = this.bbsPermissionMapper;
+        bbsRoleMapper = this.bbsRoleMapper;
         customRealm = this;
         customRealm.bbsPermissionMapper = this.bbsPermissionMapper;
         customRealm.bbsRoleMapper = this.bbsRoleMapper;
@@ -91,14 +90,28 @@ public class CustomRealm extends AuthorizingRealm {
         return simpleAuthorizationInfo;
     }
 
+    /**
+     * 根据角色id获取角色
+     * @param roleIds 角色id集合
+     * @return 角色名集合
+     */
     private Set<String> getRolesByRoleIds(Set<BigInteger> roleIds) {
+        //创建一个HashSet集合
         Set<String> roles = new HashSet<>();
+        //lambda表达式遍历角色id
         roleIds.forEach((roleId) -> {
+            //根据角色id获取角色名并写入集合中
             roles.add(bbsRoleMapper.queryBbsRoleNameByBbsRoleId(roleId));
         });
+        //返回角色集合
         return roles;
     }
 
+    /**
+     * 根据角色id获取权限
+     * @param roles 角色集合
+     * @return  权限集合
+     */
     private Set<String> getPermissionsByRoleId(Set<BigInteger> roles) {
         Set<BigInteger> permissions = new HashSet<>();
         roles.forEach((roleId)->{
@@ -108,8 +121,8 @@ public class CustomRealm extends AuthorizingRealm {
         permissions.forEach((permissionId) -> {
             sets.add("user:"+bbsPermissionMapper.queryBbsPermissionNameByPermissionId(permissionId));
         } );
-//        sets.add("user:delete");
-//        sets.add("user:add");
+/*        sets.add("user:delete");
+        sets.add("user:add");*/
         return sets;
     }
 
@@ -143,11 +156,11 @@ public class CustomRealm extends AuthorizingRealm {
             return bbsUserPassword;
         }
 
-//        User user = userDao.getUserByUserName(userName);
-//        if (user != null) {
-//            return user.getPassword();
-//        }
-////        return userMap.get(userName);
+/*        User user = userDao.getUserByUserName(userName);
+        if (user != null) {
+            return user.getPassword();
+        }
+        return userMap.get(userName);*/
         return null;
     }
 

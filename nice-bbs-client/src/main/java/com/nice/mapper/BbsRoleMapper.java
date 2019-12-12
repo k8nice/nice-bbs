@@ -4,6 +4,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.math.BigInteger;
 
+/**
+ * bbs角色mapper接口
+ * @author nice
+ */
 @Mapper
 public interface BbsRoleMapper {
 

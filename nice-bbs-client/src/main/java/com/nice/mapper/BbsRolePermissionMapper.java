@@ -3,7 +3,6 @@ package com.nice.mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.math.BigInteger;
-import java.util.List;
 import java.util.Set;
 
 @Mapper

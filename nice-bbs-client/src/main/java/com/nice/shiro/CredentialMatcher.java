@@ -3,7 +3,6 @@ package com.nice.shiro;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 
 public class CredentialMatcher extends SimpleCredentialsMatcher {
@@ -12,6 +11,7 @@ public class CredentialMatcher extends SimpleCredentialsMatcher {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
         String password = new String(usernamePasswordToken.getPassword());
         String dbPassword = (String) info.getCredentials();
+        //把数据库中获取的密码和token中获取的密码进行对比
         return this.equals(password,dbPassword);
     }
 }
