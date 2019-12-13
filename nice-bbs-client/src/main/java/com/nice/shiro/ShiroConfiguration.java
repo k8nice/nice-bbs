@@ -29,6 +29,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/css/**","anon");
         filterChainDefinitionMap.put("/js/**","anon");
         filterChainDefinitionMap.put("/image/**","anon");
+        filterChainDefinitionMap.put("/kindeditor/**","anon");
         filterChainDefinitionMap.put("/loginUser","anon");
         filterChainDefinitionMap.put("/admin","roles[admin]");
         filterChainDefinitionMap.put("/edit","perms[edit]");

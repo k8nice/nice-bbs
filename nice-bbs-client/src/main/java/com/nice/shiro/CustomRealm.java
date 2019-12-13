@@ -79,7 +79,7 @@ public class CustomRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String bbsUserName = (String) principals.getPrimaryPrincipal();
-        BigInteger bbsUserId = bbsUserMapper.queryBbsUserIdToBbsUserName(bbsUserName);
+        BigInteger bbsUserId = bbsUserMapper.queryBbsUserIdByBbsUserName(bbsUserName);
         Set<BigInteger> roleIds = getRoleIdsByUserId(bbsUserId);
        Set<String> permissions =   getPermissionsByRoleId(roleIds);
 //        Set<BigInteger> permissions = getPermissionsByUserId(bbsUserId);

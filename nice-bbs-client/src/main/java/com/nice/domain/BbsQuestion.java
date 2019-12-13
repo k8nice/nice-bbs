@@ -1,6 +1,7 @@
 package com.nice.domain;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.math.BigInteger;
 
@@ -10,6 +11,7 @@ import java.math.BigInteger;
  * @author nice
  */
 @Data
+@ToString
 public class BbsQuestion extends BaseEntity {
 
     /**

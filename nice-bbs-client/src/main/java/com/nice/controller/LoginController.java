@@ -1,7 +1,6 @@
 package com.nice.controller;
 
 import com.nice.domain.BbsUser;
-import com.nice.enums.UrlEnum;
 import com.nice.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +36,7 @@ public class LoginController {
         subject.login(token);
         System.out.println(subject.hasRole("admin"));*/
         if (loginService.loginBbsUser(bbsUser)) {
-            return UrlEnum.REDIRECT +"/";
+            return"redirect:/";
         }
         else {
             return "login";

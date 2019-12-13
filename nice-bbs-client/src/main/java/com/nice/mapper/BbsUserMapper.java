@@ -12,7 +12,7 @@ public interface BbsUserMapper {
      * @param bbsUserName bbs用户名
      * @return  bbs用户id
      */
-    BigInteger queryBbsUserIdToBbsUserName(String bbsUserName);
+    BigInteger queryBbsUserIdByBbsUserName(String bbsUserName);
 
     /**
      * 根据bbs用户名获取bbs用户密码
