@@ -5,10 +5,10 @@ spring:
     username: root
     password: nice
     driver-class-name: com.mysql.jdbc.Driver
-#解决bean重复定义
+  #解决bean重复定义
   main:
     allow-bean-definition-overriding: true
-#redis配置
+  #redis配置
   redis:
     host: 39.97.179.164
     port: 6379
@@ -16,11 +16,11 @@ spring:
 #mybatis配置
 mybatis:
   configuration:
-#驼峰命名
+    #驼峰命名
     map-underscore-to-camel-case: true
-#mapper路径
+  #mapper路径
   mapper-locations: classpath:com/nice/mapper/*.xml
-#实体类包名
+  #实体类包名
   type-aliases-package: com.nice.domain
 
 

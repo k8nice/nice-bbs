@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 /**
  * 通用实体类(创建时间和更新时间)
+ *
  * @author nice
  */
 public class BaseEntity implements Serializable {

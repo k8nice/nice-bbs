@@ -5,7 +5,8 @@ import lombok.Data;
 import java.math.BigInteger;
 
 /**
- * 权限类
+ * bbs权限类
+ * @author nice
  */
 @Data
 public class BbsPermission extends BaseEntity {

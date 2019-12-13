@@ -3,7 +3,6 @@ package com.nice.service.impl;
 import com.nice.domain.BbsUser;
 import com.nice.mapper.BbsUserMapper;
 import com.nice.service.LoginService;
-import com.nice.shiro.CustomRealm;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.Md5Hash;
@@ -13,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * 登录服务实现类
+ *
+ * @author nice
  */
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -28,6 +29,7 @@ public class LoginServiceImpl implements LoginService {
 
     /**
      * 登录bbs用户
+     *
      * @param bbsUser bbs用户实体类
      * @return true or false
      */
@@ -38,15 +40,15 @@ public class LoginServiceImpl implements LoginService {
         SecurityUtils.setSecurityManager(defaultSecurityManager);*/
         Subject subject = SecurityUtils.getSubject();
         //加密
-        Md5Hash md5Hash = new Md5Hash(bbsUser.getBbsUserPassword(),bbsUserMapper.querySaltByBbsUserName(bbsUser.getBbsUserName()),1);
-        UsernamePasswordToken token = new UsernamePasswordToken("nice",md5Hash.toString());
+        Md5Hash md5Hash = new Md5Hash(bbsUser.getBbsUserPassword(), bbsUserMapper.querySaltByBbsUserName(bbsUser.getBbsUserName()), 1);
+        //把用户名和密码添加到token中
+        UsernamePasswordToken token = new UsernamePasswordToken("nice", md5Hash.toString());
         //token认证登录
         subject.login(token);
         if (subject.isAuthenticated()) {
             //授权成功返回true
             return true;
-        }
-        else {
+        } else {
             //授权失败返回false
             return false;
         }

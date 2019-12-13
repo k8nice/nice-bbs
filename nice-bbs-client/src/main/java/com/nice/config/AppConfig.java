@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Import;
 
 /**
  * 用来配置所有同项目一起启动的组件
+ *
  * @author nice
  */
 @Configuration

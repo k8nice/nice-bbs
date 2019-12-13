@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * 登录控制类
+ *
+ * @author nice
  */
 @Controller
 public class LoginController {
@@ -16,15 +18,28 @@ public class LoginController {
 /*    @Autowired
     private CustomRealm customRealm;*/
 
+    /**
+     * 注入登录服务
+     */
     @Autowired
     private LoginService loginService;
 
+    /**
+     * 访问登录页面
+     *
+     * @return "login" 登录页面
+     */
     @GetMapping("/login")
     public String accessLoginPage() {
         return "login";
     }
 
-
+    /**
+     * 登录用户
+     *
+     * @param bbsUser bbs用户实体类
+     * @return "/login" 登录页面
+     */
     @PostMapping("/login")
     public String loginBbsUser(BbsUser bbsUser) {
 /*        DefaultSecurityManager defaultSecurityManager = new DefaultSecurityManager();
@@ -35,10 +50,10 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken("nice",md5Hash.toString());
         subject.login(token);
         System.out.println(subject.hasRole("admin"));*/
+        //登录成功，返回首页，否则重新返回登录页面
         if (loginService.loginBbsUser(bbsUser)) {
-            return"redirect:/";
-        }
-        else {
+            return "redirect:/";
+        } else {
             return "login";
         }
     }

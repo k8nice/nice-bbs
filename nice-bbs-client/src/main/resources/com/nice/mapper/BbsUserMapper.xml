@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nice.mapper.BbsUserMapper">
     <!-- 根据bbs用户名获取bbs用户id -->
-    <select id="queryBbsUserIdByBbsUserName" parameterType="java.lang.String" resultType="java.math.BigInteger" >
+    <select id="queryBbsUserIdByBbsUserName" parameterType="java.lang.String" resultType="java.math.BigInteger">
         select bbs_user_id from bbs_user where bbs_user_name = #{bbsUserName};
     </select>
 

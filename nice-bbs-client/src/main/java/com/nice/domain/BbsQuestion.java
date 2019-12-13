@@ -8,6 +8,7 @@ import java.math.BigInteger;
 
 /**
  * bbs问题实体类
+ *
  * @author nice
  */
 @Data

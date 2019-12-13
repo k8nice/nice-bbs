@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nice.mapper.BbsRoleMapper">
     <!-- 根据角色id获取角色名称 -->
-    <select id="queryBbsRoleNameByBbsRoleId" resultType="java.lang.String" >
+    <select id="queryBbsRoleNameByBbsRoleId" resultType="java.lang.String">
         select bbs_role_name from bbs_role where bbs_role_id = #{bbsRoleId};
     </select>
 </mapper>

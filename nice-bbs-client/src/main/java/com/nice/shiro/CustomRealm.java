@@ -76,6 +76,11 @@ public class CustomRealm extends AuthorizingRealm {
         customRealm.bbsUserRoleMapper = this.bbsUserRoleMapper;
     }*/
 
+    /**
+     * 授权
+     * @param principals
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String bbsUserName = (String) principals.getPrimaryPrincipal();
@@ -131,6 +136,12 @@ public class CustomRealm extends AuthorizingRealm {
         return roleIds;
     }
 
+    /**
+     * 认证
+     * @param token
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //从主体传过来的认证信息中，获得用户名。

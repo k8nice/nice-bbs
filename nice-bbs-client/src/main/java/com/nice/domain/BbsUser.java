@@ -6,6 +6,8 @@ import java.math.BigInteger;
 
 /**
  * bbs用户实体类
+ *
+ * @author nice
  */
 @Data
 public class BbsUser extends BaseEntity {
@@ -54,7 +56,6 @@ public class BbsUser extends BaseEntity {
      * 用户性别
      */
     private String bbsUserGender;
-
 
 
 }

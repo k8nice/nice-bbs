@@ -15,8 +15,14 @@ public class BbsQuestionType {
      */
     private BigInteger bbsQuestionTypeId;
 
+    /**
+     * bbs问题类型名称
+     */
     private String bbsQuestionTypeName;
 
+    /**
+     * bbs问题索引
+     */
     private Integer index;
 
 }
