@@ -91,7 +91,7 @@
                         <li><a class="label label-info tag-state" th:id="${'question-type-'+bbsQuestionType.index}"
                                th:text="${bbsQuestionType.bbsQuestionTypeName}" th:onclick="'addTag(\''+${bbsQuestionType.index}+'\')'" ></a></li>
                     </ul>
-                    <input type="text"   class="form-control" placeholder="Text input" id="question-type-input" disabled="disabled" />
+                    <input type="text"   class="form-control" name="bbsQuestionType" placeholder="Text input" id="question-type-input" readonly="readonly" />
 
                 </div>
 <!--                <div class="form-group">-->
@@ -118,7 +118,7 @@
             function getEditorData() {
                  html = editor.html();
                  //创建一个隐藏域，提交的时候把富文本编辑器中的文本加入到隐藏域的value属性中
-                 $('#question-form').append("<div class='form-group' ><input type='hidden' name='bbsQuestionContent' value='"+html+"' ></div>")
+                 $('#question-form').append("<div class='form-group' ><input type='hidden' name='bbsQuestionDescription' value='"+html+"' ></div>")
             }
 
             // alert(typeValue)

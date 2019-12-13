@@ -1,5 +1,8 @@
 package com.nice.domain;
 
+import lombok.Data;
+
+import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -8,15 +11,18 @@ import java.time.LocalDateTime;
  *
  * @author nice
  */
+@Data
 public class BaseEntity implements Serializable {
 
     /**
      * 创建时间
      */
+    @Past(message = "日期输入有误")
     private LocalDateTime gmtCreate;
 
     /**
      * 更新时间
      */
+    @Past(message = "日期输入有误")
     private LocalDateTime gmtModify;
 }

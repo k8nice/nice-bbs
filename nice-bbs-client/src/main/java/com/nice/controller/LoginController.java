@@ -1,11 +1,14 @@
 package com.nice.controller;
 
 import com.nice.domain.BbsUser;
+import com.nice.mapper.BbsUserMapper;
 import com.nice.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 登录控制类
@@ -24,6 +27,10 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+
+    @Autowired(required = false)
+    private BbsUserMapper bbsUserMapper;
+
     /**
      * 访问登录页面
      *
@@ -41,7 +48,10 @@ public class LoginController {
      * @return "/login" 登录页面
      */
     @PostMapping("/login")
-    public String loginBbsUser(BbsUser bbsUser) {
+    public String loginBbsUser(BbsUser bbsUser, HttpServletRequest request) {
+
+
+
 /*        DefaultSecurityManager defaultSecurityManager = new DefaultSecurityManager();
         defaultSecurityManager.setRealm(customRealm);
         SecurityUtils.setSecurityManager(defaultSecurityManager);
@@ -52,6 +62,10 @@ public class LoginController {
         System.out.println(subject.hasRole("admin"));*/
         //登录成功，返回首页，否则重新返回登录页面
         if (loginService.loginBbsUser(bbsUser)) {
+            BbsUser sessionBbsUser = new BbsUser();
+            sessionBbsUser.setBbsUserId(bbsUserMapper.queryBbsUserIdByBbsUserName(bbsUser.getBbsUserName()));
+            sessionBbsUser.setBbsUserName(bbsUser.getBbsUserName());
+            request.getSession().setAttribute("USER_SESSION",sessionBbsUser);
             return "redirect:/";
         } else {
             return "login";

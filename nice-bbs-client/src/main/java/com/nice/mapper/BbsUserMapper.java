@@ -2,6 +2,7 @@ package com.nice.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
 
 /**
@@ -26,7 +27,7 @@ public interface BbsUserMapper {
      * @param bbsUserName bbs用户名
      * @return bbs用户密码
      */
-    String queryBbsUserPasswordByBbsUserName(String bbsUserName);
+    String queryBbsUserPasswordByBbsUserName(@NotNull(message = "查找的用户名不能为空") String bbsUserName);
 
     /**
      * 根据用户名查询盐值
@@ -35,5 +36,6 @@ public interface BbsUserMapper {
      * @return salt  盐值
      */
     String querySaltByBbsUserName(String bbsUserName);
+
 
 }

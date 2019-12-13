@@ -2,6 +2,8 @@ package com.nice.domain;
 
 import lombok.Data;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.math.BigInteger;
 
 /**
@@ -25,11 +27,13 @@ public class BbsUser extends BaseEntity {
     /**
      * 用户密码
      */
+    @Size(min = 6,max = 10,message = "用户密码格式不正确")
     private String bbsUserPassword;
 
     /**
      * 用户邮箱
      */
+    @Email
     private String bbsUserEmail;
 
     /**

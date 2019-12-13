@@ -17,4 +17,5 @@
     <select id="querySaltByBbsUserName" parameterType="java.lang.String" resultType="java.lang.String">
         select salt from bbs_user where bbs_user_name=#{bbsUserName};
     </select>
+
 </mapper>

@@ -11,9 +11,9 @@ import java.math.BigInteger;
 public class BbsQuestionType {
 
     /**
-     * bbs问题类型id
+     * bbs问题类型名称
      */
-    private BigInteger bbsQuestionTypeId;
+    private String bbsQuestionType;
 
     /**
      * bbs问题类型名称

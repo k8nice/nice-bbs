@@ -2,7 +2,11 @@ package com.nice.controller;
 
 import com.nice.domain.BbsQuestion;
 import com.nice.domain.BbsQuestionType;
+import com.nice.domain.BbsUser;
+import com.nice.service.BbsQuestionService;
 import com.nice.service.BbsQuestionTypeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -27,11 +32,18 @@ public class QuestionController {
      */
     private final String QUESTION_SUFFIX = "/question/question_";
 
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(QuestionController.class);
+
     /**
      * 注入bbs问题类型服务
      */
     @Autowired
-    BbsQuestionTypeService bbsQuestionTypeService;
+    private BbsQuestionTypeService bbsQuestionTypeService;
+
+
+    @Autowired
+    private BbsQuestionService bbsQuestionService;
 
     /**
      * 访问问题列表页面
@@ -73,9 +85,14 @@ public class QuestionController {
      * @return "redirect:/"  返回到首页
      */
     @PostMapping("/add")
-    public String addQuestion(BbsQuestion bbsQuestion) {
-//        System.out.println(bbsQuestion);
-        return "redirect:/";
+    public String addQuestion(BbsQuestion bbsQuestion,HttpServletRequest request) {
+        BbsUser bbsUser = (BbsUser) request.getSession().getAttribute("USER_SESSION");
+        bbsQuestion.setBbsUserId(bbsUser.getBbsUserId());
+        if (bbsQuestionService.addQuestion(bbsQuestion)) {
+            return "redirect:/";
+        } else {
+            return QUESTION_SUFFIX+"add";
+        }
     }
 
 
