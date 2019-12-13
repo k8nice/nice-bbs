@@ -1,13 +1,8 @@
 package com.nice.controller;
 
 import com.nice.domain.BbsUser;
+import com.nice.enums.UrlEnum;
 import com.nice.service.LoginService;
-import com.nice.shiro.CustomRealm;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.crypto.hash.Md5Hash;
-import org.apache.shiro.mgt.DefaultSecurityManager;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +37,7 @@ public class LoginController {
         subject.login(token);
         System.out.println(subject.hasRole("admin"));*/
         if (loginService.loginBbsUser(bbsUser)) {
-            return "index";
+            return UrlEnum.REDIRECT +"/";
         }
         else {
             return "login";

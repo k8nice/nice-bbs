@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>问题列表页面</title>
+            <script>
+                var current_url = window.location.href;
+
+                // Do a shortcut so that be.bazel.build redirect to the build encyclopedia
+                var be_url = new RegExp("^https?://be(\.bazel.build)?/?");
+                if (be_url.test(current_url)) {
+                    window.location.replace(current_url.replace(be_url, "https://docs.bazel.build/be/overview.html"));
+                }
+                var be_url = new RegExp("^https?://be(\.bazel.build)?/([a-zA-Z0-9_-]+)([/#](.*))?");
+                if (be_url.test(current_url)) {
+                    window.location.replace(current_url.replace(be_url, "https://docs.bazel.build/be/$2.html#$4"));
+                }
+                // And a short to code reviews
+                var cr_url = new RegExp("^https?://cr(\.bazel.build)?/([0-9]+)")
+                if (cr_url.test(current_url)) {
+                    window.location.replace(current_url.replace(cr_url, "https://bazel-review.googlesource.com/c/$2"));
+                }
+                // Code review dashboard
+                var cr_url = new RegExp("^https?://cr(\.bazel.build)?/?")
+                if (cr_url.test(current_url)) {
+                    window.location.replace(current_url.replace(cr_url, "https://bazel-review.googlesource.com/"));
+                }
+            </script>
+            <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+            <link type="text/css" rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+            <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}">
+            <script type="text/javascript" rel="script" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+            <script type="text/javascript" rel="script" th:src="@{/js/bootstrap.js}"></script>
+    </head>
+    <body>
+        <div th:include="nav_menu_head" ></div>
+    </body>
+</html>

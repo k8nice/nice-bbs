@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nice.mapper.BbsUserRoleMapper">
+    <!-- 根据用户id获取角色id -->
     <select id="queryBbsRoleIdByBbsUserId" parameterType="java.math.BigInteger" resultType="java.math.BigInteger">
         select bbs_role_id from bbs_user_role where bbs_user_id=#{bbsUserId};
     </select>

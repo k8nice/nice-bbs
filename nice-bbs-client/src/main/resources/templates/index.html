@@ -34,70 +34,71 @@
     <script type="text/javascript" rel="script" th:src="@{/js/bootstrap.js}"></script>
 </head>
 <body class="body-home">
-<nav id="common-nav" class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" style="padding-top: 15px;font-size: 25px" href="/">
-<!--                <img class="navbar-logo" src="/images/bazel-navbar.svg">-->
-                 nice
-            </a>
-        </div>
+    <div th:include="nav_menu_head" ></div>
+<!--<nav id="common-nav" class="navbar navbar-inverse navbar-fixed-top">-->
+<!--    <div class="container">-->
+<!--        &lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+<!--        <div class="navbar-header">-->
+<!--            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"-->
+<!--                    data-target="#bs-example-navbar-collapse-1">-->
+<!--                <span class="sr-only">Toggle navigation</span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--                <span class="icon-bar"></span>-->
+<!--            </button>-->
+<!--            <a class="navbar-brand" style="padding-top: 15px;font-size: 25px" href="/">-->
+<!--                &lt;!&ndash;                <img class="navbar-logo" src="/images/bazel-navbar.svg">&ndash;&gt;-->
+<!--                nice-->
+<!--            </a>-->
+<!--        </div>-->
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="https://github.com/bazelbuild/bazel">
-                        <span class="hidden-sm">GitHub</span>
-                        <span class="nav-icon visible-sm"><i class="fa fa-github"></i></span>
-                    </a>
-                </li>
-            </ul>
-            <form class="navbar-form navbar-right" action="/search.html" id="cse-search-box">
-                <div class="form-group">
-                    <input type="hidden" name="cx" value="009927877080525621790:2pxlpaexqpc">
-                    <input type="hidden" name="cof" value="FORID:10">
-                    <input type="hidden" name="ie" value="UTF-8">
-                    <input type="search" name="q" id="q" class="form-control input-sm" placeholder="Search">
-                </div>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="https://docs.bazel.build">Documentation</a>
-                </li>
-                <li>
-                    <a href="/contributing.html">Contribute</a>
-                </li>
-                <li>
-                    <a href="https://blog.bazel.build">
-                        <span class="hidden-sm">Blog</span>
-                        <span class="nav-icon visible-sm"><i class="fa fa-rss"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://twitter.com/bazelbuild">
-                        <span class="visible-xs">Twitter</span>
-                        <span><i class="nav-icon fa fa-twitter hidden-xs"></i></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://stackoverflow.com/questions/tagged/bazel">
-                        <span class="visible-xs">StackOverflow</span>
-                        <span><i class="nav-icon fa fa-stack-overflow hidden-xs"></i></span>
-                    </a>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+<!--        &lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+<!--        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+<!--            <ul class="nav navbar-nav navbar-right">-->
+<!--                <li>-->
+<!--                    <a href="https://github.com/bazelbuild/bazel">-->
+<!--                        <span class="hidden-sm">GitHub</span>-->
+<!--                        <span class="nav-icon visible-sm"><i class="fa fa-github"></i></span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            <form class="navbar-form navbar-right" action="/search.html" id="cse-search-box">-->
+<!--                <div class="form-group">-->
+<!--                    &lt;!&ndash;                    <input type="hidden" name="cx" value="009927877080525621790:2pxlpaexqpc">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <input type="hidden" name="cof" value="FORID:10">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <input type="hidden" name="ie" value="UTF-8">&ndash;&gt;-->
+<!--                    <input type="search" name="q" id="q" class="form-control input-sm" placeholder="搜索">-->
+<!--                </div>-->
+<!--            </form>-->
+<!--            <ul class="nav navbar-nav navbar-right">-->
+<!--                <li>-->
+<!--                    <a href="https://docs.bazel.build">新增问题</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="/contributing.html">个人资料</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="https://blog.bazel.build">-->
+<!--                        <span class="hidden-sm">问题列表</span>-->
+<!--                        &lt;!&ndash;                        <span class="nav-icon visible-sm"><i class="fa fa-rss"></i></span>&ndash;&gt;-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="https://twitter.com/bazelbuild">-->
+<!--                        <span class="visible-xs">Twitter</span>-->
+<!--                        &lt;!&ndash;                        <span><i class="nav-icon fa fa-twitter hidden-xs"></i></span>&ndash;&gt;-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="http://stackoverflow.com/questions/tagged/bazel">-->
+<!--                        <span class="visible-xs">StackOverflow</span>-->
+<!--                        &lt;!&ndash;                        <span><i class="nav-icon fa fa-stack-overflow hidden-xs"></i></span>&ndash;&gt;-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+<!--    </div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
+<!--</nav>-->
 
 
 <div class="home">
@@ -105,26 +106,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8">
-                    <p class="hero-tagline">{Fast, Correct} - Choose two</p>
-                    <h1 class="hero-title">Build and test software of any size, quickly and reliably</h1>
+                    <p class="hero-tagline"></p>
+                    <h1 class="hero-title">欢迎来到nice知识分享平台</h1>
                     <p class="cta-buttons">
                         <a class="btn btn-lg"
                            id="btn-install"
                            href="https://docs.bazel.build/install.html">
-                            Get Bazel
+                            网站介绍
                         </a>
                         <a class="btn btn-success btn-lg cta-main"
                            href="https://docs.bazel.build/getting-started.html">
-                            Get Started
+                            进入
                         </a>
                     </p>
                 </div>
-                <div class="col-sm-4 hidden-xs">
-                    <img src="images/bazel-icon.svg"
-                         title="Bazel"
-                         alt="Bazel logo"
-                         class="logo img-responsive"/>
-                </div>
+<!--                <div class="col-sm-4 hidden-xs">-->
+<!--                    <img src="images/bazel-icon.svg"-->
+<!--                         title="Bazel"-->
+<!--                         alt="Bazel logo"-->
+<!--                         class="logo img-responsive"/>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -133,37 +134,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h2>Why Bazel?</h2>
+                    <h2>我们的网站都有哪些功能?</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-3">
-                    <h3>Speed up your builds and tests</h3>
+                    <h3 style="text-align: center">提问功能</h3>
                     <p>
-                        Bazel only rebuilds what is necessary.
-                        With advanced local and distributed caching, optimized dependency analysis and parallel
-                        execution, you get fast and incremental builds.
+                        可以把您遇到的技术问题或者一些开发上的困扰提出来，会有大神来回答
                     </p>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <h3>One tool, multiple languages</h3>
-                    <p>Build and test Java, C++, Android, iOS, Go and a wide variety of other language platforms.
-                        Bazel runs on Windows, macOS, and Linux.
+                    <h3 style="text-align: center">专业的技术团队</h3>
+                    <p>有阿里巴巴，腾讯等大厂的专业大神为您解答问题
                     </p>
                 </div>
                 <div class="clearfix visible-sm-block"></div>
                 <div class="col-sm-6 col-md-3">
-                    <h3>Scalable</h3>
+                    <h3 style="text-align: center">vip服务</h3>
                     <p>
-                        Bazel helps you scale your organization, codebase and Continuous Integration system.
-                        It handles codebases of any size, in multiple repositories or a huge monorepo.
+                        问题排名靠前，并且赠送一定积分，可以增加每日提问题的个数
                     </p>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <h3>Extensible to your needs</h3>
+                    <h3 style="text-align: center">客服功能</h3>
                     <p>
-                        Easily add support for new languages and platforms with Bazel's familiar extension language.
-                        Share and re-use language rules written by the growing Bazel community.
+                        可以自助申请找回您的账号，有建议可以给本人留言。而且如有谩骂他人或者传播不良信息等请第一时间发送截图。如果发现立即封号。
                     </p>
                 </div>
             </div>
@@ -174,29 +170,30 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h2>Trusted by industry leaders</h2>
+                    <h2>大佬聚集地</h2>
                 </div>
             </div>
 
             <div class="row logos">
                 <div class="col-sm-6 col-md-2 user-logo-container">
-                    <img class="user-logo" src="images/user-logos/braintree.svg" alt="Braintree logo"
-                         title="Braintree, a PayPal service"/>
+<!--                    <img class="user-logo" src="images/user-logos/braintree.svg" alt="Braintree logo"-->
+<!--                         title="Braintree, a PayPal service"/>-->
+                        <a href="#">杰哥</a>
                 </div>
                 <div class="col-sm-6 col-md-2 user-logo-container">
-                    <img class="user-logo" src="images/user-logos/dropbox.svg" alt="Dropbox logo" title="Dropbox"/>
+                    <a href="#">平头哥技术博文</a>
                 </div>
                 <div class="col-sm-6 col-md-2 user-logo-container">
-                    <img class="user-logo" src="images/user-logos/google.svg" alt="Google logo" title="Google"/>
+                    <a href="#">缺心眼那叫单纯</a>
                 </div>
                 <div class="col-sm-6 col-md-2 user-logo-container">
-                    <img class="user-logo square" src="images/user-logos/huawei.png" alt="Huawei logo" title="Huawei"/>
+                    <a href="#">黑神</a>
                 </div>
                 <div class="col-sm-6 col-md-2 user-logo-container">
-                    <img class="user-logo" src="images/user-logos/stripe.svg" alt="Stripe logo" title="Stripe"/>
+                    <a href="#">王付林</a>
                 </div>
                 <div class="col-sm-6 col-md-2 user-logo-container">
-                    <img class="user-logo" src="images/user-logos/twosigma.svg" alt="Two Sigma logo" title="Two Sigma"/>
+                    <a href="#">我叫什么名字呢</a>
                 </div>
             </div>
 
@@ -204,13 +201,13 @@
                 <div class="col-sm-12 col-md-4">
                     <blockquote>
                         <p>
-                            Bazel is the common build tool throughout Pinterest and has been instrumental in achieving
-                            fast, reproducible builds across our programming languages and platforms.
+                            杰哥是阿里巴巴十年经验的技术大佬，精通Springcloud,k8s,mongodb,elasticsearch等先进技术，曾获得国内大厂领导的优秀好评
                         </p>
-                        <footer><cite>Rahul Malik</cite>, Software Engineer</footer>
+                        <footer>个人名言 <cite>每一样与众不同的东西，都以无比寂寞的勤奋为前提</cite></footer>
                         <div class="user-logo-container">
-                            <img class="user-logo square" src="images/user-logos/pinterest.svg" alt="Pinterest logo"
-                                 title="Pinterest"/>
+<!--                            <img class="user-logo square" src="images/user-logos/pinterest.svg" alt="Pinterest logo"-->
+<!--                                 title="Pinterest"/>-->
+                                <p>技术专家-梁伟杰</p>
                         </div>
                     </blockquote>
                 </div>
