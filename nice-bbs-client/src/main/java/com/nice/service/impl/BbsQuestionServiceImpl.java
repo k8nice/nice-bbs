@@ -7,7 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+/**
+ * bbs问题业务实现类
+ * @author nice
+ */
 @Service
 public class BbsQuestionServiceImpl implements BbsQuestionService {
 
@@ -21,6 +26,11 @@ public class BbsQuestionServiceImpl implements BbsQuestionService {
         bbsQuestion.setGmtModify(localDateTime);
         bbsQuestionMapper.addQuestion(bbsQuestion);
         return true;
+    }
+
+    @Override
+    public List<BbsQuestion> queryBbsQuestionList() {
+        return bbsQuestionMapper.queryBbsQuestionList();
     }
 
 

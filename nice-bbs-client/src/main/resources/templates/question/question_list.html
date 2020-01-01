@@ -33,21 +33,48 @@
             <script type="text/javascript" rel="script" th:src="@{/js/jquery-3.4.1.min.js}"></script>
             <script type="text/javascript" rel="script" th:src="@{/js/bootstrap.js}"></script>
             <style>
+
                 .nav-stacked > li{
                     width: 300px;
                     height: 40px;
                     margin-top: 20px;
                     font-size: 15px;
                 }
+                li {
+                    list-style: none;
+                }
+
+                #question-list-data {
+                    position: absolute;
+                    margin-top: 80px;
+                    margin-left: 400px;
+                }
+
+                #question-list-data-title {
+                    color: #0f0f0f;font-size: 20px
+                }
+
+
+
             </style>
     </head>
     <body>
         <div th:include="nav_menu_head" ></div>
-        <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" class="active" id="question-new-menu"><a href="#">最新问题</a></li>
-            <li role="presentation" id="question-hot-menu"><a href="#">最热问题</a></li>
-            <li role="presentation" id="question-type-menu"><a href="#">问题分类</a></li>
-        </ul>
+        <div style="position: absolute">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" class="active" id="question-new-menu"><a href="#">最新问题</a></li>
+                <li role="presentation" id="question-hot-menu"><a href="#">最热问题</a></li>
+                <li role="presentation" id="question-type-menu"><a href="#">问题分类</a></li>
+            </ul>
+        </div>
+<!--        <li th:text="${questions}">-->
+
+<!--        </li>-->
+        <div id="question-list-data">
+            <ul th:each="bbsQuestion:${questions}"  >
+                <li><b><a class="table" id="question-list-data-title" th:text="${bbsQuestion.bbsQuestionName}" ></a></b></li>
+            </ul>
+        </div>
         <script type="text/javascript" rel="script" >
             $('#question-new-menu').click(function () {
                 $('.nav-stacked > .active').removeClass('active');

@@ -2,6 +2,8 @@ package com.nice.service;
 
 import com.nice.domain.BbsQuestion;
 
+import java.util.List;
+
 /**
  * bbs问题服务
  *
@@ -15,5 +17,11 @@ public interface BbsQuestionService {
      * @return  true or false true为添加成功 false为添加失败
      */
     Boolean addQuestion(BbsQuestion bbsQuestion);
+
+    /**
+     * 查询问题列表
+     * @return List<BbsQuestion>
+     */
+    List<BbsQuestion> queryBbsQuestionList();
 
 }

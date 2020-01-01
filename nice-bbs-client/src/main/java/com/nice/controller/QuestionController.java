@@ -51,7 +51,8 @@ public class QuestionController {
      * @return "/question/question_list" 问题列表页面的url
      */
     @GetMapping("/list")
-    public String accessQuestionListPage() {
+    public String accessQuestionListPage(Model model) {
+        model.addAttribute("questions",bbsQuestionService.queryBbsQuestionList());
         return QUESTION_PREFIX + "list";
     }
 
