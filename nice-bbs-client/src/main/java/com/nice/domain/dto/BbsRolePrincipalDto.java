@@ -1,4 +1,4 @@
-package com.nice.dto;
+package com.nice.domain.dto;
 
 import java.math.BigInteger;
 

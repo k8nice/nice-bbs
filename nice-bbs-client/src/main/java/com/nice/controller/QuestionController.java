@@ -30,7 +30,7 @@ public class QuestionController {
     /**
      * 返回的url的前缀
      */
-    private final String QUESTION_SUFFIX = "/question/question_";
+    private final String QUESTION_PREFIX = "/question/question_";
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QuestionController.class);
@@ -52,7 +52,7 @@ public class QuestionController {
      */
     @GetMapping("/list")
     public String accessQuestionListPage() {
-        return QUESTION_SUFFIX + "list";
+        return QUESTION_PREFIX + "list";
     }
 
     /**
@@ -75,7 +75,7 @@ public class QuestionController {
         }));
         //把问题类型添加到model中
         model.addAttribute("bbsQuestionTypes", bbsQuestionTypes);
-        return QUESTION_SUFFIX + "add";
+        return QUESTION_PREFIX + "add";
     }
 
     /**
@@ -91,7 +91,7 @@ public class QuestionController {
         if (bbsQuestionService.addQuestion(bbsQuestion)) {
             return "redirect:/";
         } else {
-            return QUESTION_SUFFIX+"add";
+            return QUESTION_PREFIX +"add";
         }
     }
 

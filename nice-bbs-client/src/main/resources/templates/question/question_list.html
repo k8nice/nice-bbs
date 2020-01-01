@@ -32,8 +32,37 @@
             <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}">
             <script type="text/javascript" rel="script" th:src="@{/js/jquery-3.4.1.min.js}"></script>
             <script type="text/javascript" rel="script" th:src="@{/js/bootstrap.js}"></script>
+            <style>
+                .nav-stacked > li{
+                    width: 300px;
+                    height: 40px;
+                    margin-top: 20px;
+                    font-size: 15px;
+                }
+            </style>
     </head>
     <body>
         <div th:include="nav_menu_head" ></div>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active" id="question-new-menu"><a href="#">最新问题</a></li>
+            <li role="presentation" id="question-hot-menu"><a href="#">最热问题</a></li>
+            <li role="presentation" id="question-type-menu"><a href="#">问题分类</a></li>
+        </ul>
+        <script type="text/javascript" rel="script" >
+            $('#question-new-menu').click(function () {
+                $('.nav-stacked > .active').removeClass('active');
+                $('#question-new-menu').addClass('active')
+            })
+
+            $('#question-hot-menu').click(function () {
+                $('.nav-stacked > .active').removeClass('active');
+                $('#question-hot-menu').addClass('active')
+            })
+
+            $('#question-type-menu').click(function () {
+                $('.nav-stacked > .active').removeClass('active');
+                $('#question-type-menu').addClass('active')
+            })
+        </script>
     </body>
 </html>

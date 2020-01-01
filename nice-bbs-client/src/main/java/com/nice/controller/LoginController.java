@@ -3,6 +3,8 @@ package com.nice.controller;
 import com.nice.domain.BbsUser;
 import com.nice.mapper.BbsUserMapper;
 import com.nice.service.LoginService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author nice
  */
+@Api("登录控制类")
 @Controller
 public class LoginController {
 
@@ -37,6 +40,7 @@ public class LoginController {
      * @return "login" 登录页面
      */
     @GetMapping("/login")
+    @ApiOperation(value = "访问登录页",notes = "返回登录页面")
     public String accessLoginPage() {
         return "login";
     }

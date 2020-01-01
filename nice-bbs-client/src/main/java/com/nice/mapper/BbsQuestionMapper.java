@@ -3,6 +3,8 @@ package com.nice.mapper;
 import com.nice.domain.BbsQuestion;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface BbsQuestionMapper {
 
@@ -11,4 +13,10 @@ public interface BbsQuestionMapper {
      * @param bbsQuestion   bbs问题实体类
      */
     void addQuestion(BbsQuestion bbsQuestion);
+
+    /**
+     * 查询问题列表
+     * @return
+     */
+    List<BbsQuestion> queryBbsQuestionList();
 }

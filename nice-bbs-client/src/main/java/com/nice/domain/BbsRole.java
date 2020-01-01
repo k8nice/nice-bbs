@@ -1,5 +1,6 @@
 package com.nice.domain;
 
+import io.swagger.annotations.Api;
 import lombok.Data;
 
 import java.math.BigInteger;
@@ -10,6 +11,7 @@ import java.math.BigInteger;
  * @author nice
  */
 @Data
+@Api("权限实体类")
 public class BbsRole extends BaseEntity {
 
     /**

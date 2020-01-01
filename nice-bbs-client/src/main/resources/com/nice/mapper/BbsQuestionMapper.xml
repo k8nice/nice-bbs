@@ -7,10 +7,31 @@
 <!--    <resultMap id="bbsQuestionResult" type="com.nice.domain.BbsQuestion">-->
 <!--        <id  javaType="java.math.BigInteger"   column="bbs_question_id" property="bbsQuestionId" />-->
 <!--    </resultMap>-->
+
+    <sql id="bbs_question_columns" >
+        bbs_question_id,bbs_question_name,bbs_question_type,bbs_question_description,
+        gmt_create,gmt_modify,bbs_user_id
+    </sql>
+
+    <sql id="bbs_question_properties">
+        #{bbsQuestionId},#{bbsQuestionName},
+        #{bbsQuestionType},#{bbsQuestionDescription},#{gmtCreate},#{gmtModify},#{bbsUserId}
+    </sql>
     
     <insert id="addQuestion" parameterType="com.nice.domain.BbsQuestion">
-        insert into bbs_question(bbs_question_id,bbs_question_name,bbs_question_type,bbs_question_description,
-        gmt_create,gmt_modify,bbs_user_id) values(#{bbsQuestionId},#{bbsQuestionName},
-        #{bbsQuestionType},#{bbsQuestionDescription},#{gmtCreate},#{gmtModify},#{bbsUserId});
+        insert into bbs_question
+            <trim prefix="(" suffix=")">
+                <include refid="bbs_question_columns" />
+            </trim>
+         values
+            <trim prefix="(" suffix=")">
+                <include refid="bbs_question_properties" />
+            </trim>
     </insert>
+
+    <select id="queryBbsQuestionList" resultType="com.nice.domain.BbsQuestion" >
+        select
+            <include refid="bbs_question_columns" />
+        from bbs_question;
+    </select>
 </mapper>
