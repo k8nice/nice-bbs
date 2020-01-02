@@ -24,7 +24,7 @@ public class BbsQuestionTypeServiceImpl implements BbsQuestionTypeService {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-    @Autowired
+    @Autowired(required = false)
     private BbsQuestionTypeMapper bbsQuestionTypeMapper;
 
     /**
@@ -32,11 +32,12 @@ public class BbsQuestionTypeServiceImpl implements BbsQuestionTypeService {
      */
     @Bean
     @Override
-    public void addQuestionTypeToRedis() {
+    public String addQuestionTypeToRedis() {
         //创建一个Gson对象用来序列化
         Gson gson = new Gson();
         //把问题类型集合序列化后存入redis中
         redisTemplate.opsForValue().set("bbsQuestionTypes", gson.toJson(bbsQuestionTypeMapper.queryAllQuestionTypes()));
+        return gson.toString();
     }
 
     /**

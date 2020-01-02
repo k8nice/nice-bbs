@@ -19,4 +19,10 @@ public interface BbsQuestionMapper {
      * @return
      */
     List<BbsQuestion> queryBbsQuestionList();
+
+    /**
+     * 查询问题数量
+     * @return Long
+     */
+    Long queryBbsQuestionCount();
 }

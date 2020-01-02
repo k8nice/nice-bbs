@@ -14,7 +14,7 @@ public interface BbsQuestionTypeService {
     /**
      * 添加问题类型到redis缓存中
      */
-    void addQuestionTypeToRedis();
+    String addQuestionTypeToRedis();
 
     /**
      * 从redis从取出问题类型

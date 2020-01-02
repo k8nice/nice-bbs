@@ -5,6 +5,9 @@ import com.nice.mapper.BbsUserMapper;
 import com.nice.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +22,13 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Api("登录控制类")
 @Controller
+@Slf4j
 public class LoginController {
 
 /*    @Autowired
     private CustomRealm customRealm;*/
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
     /**
      * 注入登录服务
@@ -69,6 +75,8 @@ public class LoginController {
             BbsUser sessionBbsUser = new BbsUser();
             sessionBbsUser.setBbsUserId(bbsUserMapper.queryBbsUserIdByBbsUserName(bbsUser.getBbsUserName()));
             sessionBbsUser.setBbsUserName(bbsUser.getBbsUserName());
+//            LOGGER.info("当前登录的用户为{}",bbsUser.getBbsUserName());
+            log.info("当前登录的用户为{}",bbsUser.getBbsUserName());
             request.getSession().setAttribute("USER_SESSION",sessionBbsUser);
             return "redirect:/";
         } else {

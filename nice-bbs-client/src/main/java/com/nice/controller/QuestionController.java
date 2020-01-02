@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -52,6 +53,12 @@ public class QuestionController {
      */
     @GetMapping("/list")
     public String accessQuestionListPage(Model model) {
+        Long pages = bbsQuestionService.getBbsQuestionPages(10);
+        List<Integer> pagesList = new ArrayList<>();
+        for (int i =1;i<=pages;i++) {
+            pagesList.add(i);
+        }
+        model.addAttribute("pages",pagesList);
         model.addAttribute("questions",bbsQuestionService.queryBbsQuestionList());
         return QUESTION_PREFIX + "list";
     }

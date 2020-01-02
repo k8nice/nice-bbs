@@ -30,7 +30,6 @@ public class BbsQuestion extends BaseEntity {
      */
     private String bbsQuestionType;
 
-
     /**
      * bbs问题描述
      */
