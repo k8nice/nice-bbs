@@ -1,5 +1,7 @@
 package com.nice.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.nice.domain.BbsQuestion;
 import com.nice.mapper.BbsQuestionMapper;
 import com.nice.service.BbsQuestionService;
@@ -43,9 +45,13 @@ public class BbsQuestionServiceImpl implements BbsQuestionService {
     }
 
     @Override
-    public List<BbsQuestion> queryBbsQuestionPageList() {
+    public List<BbsQuestion> queryBbsQuestionPageList(Integer pageNum) {
+//        PageInfo pageInfo = PageInfo.of(bbsQuestionMapper.queryBbsQuestionList());
+//        pageInfo.setPageNum(pageNum);
+//        pageInfo.setPageSize(10);
+        PageInfo<BbsQuestion> pageInfo = PageHelper.startPage(pageNum, 10).setOrderBy("bbs_question_id desc").doSelectPageInfo(() -> this.bbsQuestionMapper.queryBbsQuestionList());
 //        PageHelper.startPage()
-        return null;
+        return pageInfo.getList();
     }
 
 

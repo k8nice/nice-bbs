@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -51,8 +52,20 @@ public class QuestionController {
      *
      * @return "/question/question_list" 问题列表页面的url
      */
+    @GetMapping("/list/{pageNum}")
+    public String accessQuestionList(Model model, @PathVariable Integer pageNum) {
+        Long pages = bbsQuestionService.getBbsQuestionPages(10);
+        List<Integer> pagesList = new ArrayList<>();
+        for (int i =1;i<=pages;i++) {
+            pagesList.add(i);
+        }
+        model.addAttribute("pages",pagesList);
+        model.addAttribute("questions",bbsQuestionService.queryBbsQuestionPageList(pageNum));
+        return QUESTION_PREFIX + "list";
+    }
+
     @GetMapping("/list")
-    public String accessQuestionListPage(Model model) {
+    public String accessQuestionListByPage(Model model,Long pageNum) {
         Long pages = bbsQuestionService.getBbsQuestionPages(10);
         List<Integer> pagesList = new ArrayList<>();
         for (int i =1;i<=pages;i++) {

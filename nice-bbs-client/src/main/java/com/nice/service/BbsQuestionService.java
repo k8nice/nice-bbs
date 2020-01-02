@@ -28,12 +28,12 @@ public interface BbsQuestionService {
      * 查询分页问题列表
      * @return List<BbsQuestion> 问题集合
      */
-    List<BbsQuestion> queryBbsQuestionPageList();
+    List<BbsQuestion> queryBbsQuestionPageList(Integer pageNum);
 
     /**
      * 获取问题页数
-     * @param size 每页多少条记录
+     * @param pageSize 每页多少条记录
      * @return Long     总页数
      */
-    Long getBbsQuestionPages(Integer size);
+    Long getBbsQuestionPages(Integer pageSize);
 }

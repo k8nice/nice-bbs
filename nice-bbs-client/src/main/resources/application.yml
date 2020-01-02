@@ -61,6 +61,9 @@ spring:
               threadsInheritContextClassLoaderOfInitializingThread: true
         #数据库方式
         job-store-type: jdbc
+  thymeleaf:
+    cache: false
+
 
 
 
@@ -73,7 +76,6 @@ mybatis:
   mapper-locations: classpath:com/nice/mapper/*.xml
   #实体类包名
   type-aliases-package: com.nice.domain
-
 
 
 logging:
