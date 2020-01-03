@@ -31,9 +31,23 @@ public interface BbsQuestionService {
     List<BbsQuestion> queryBbsQuestionPageList(Integer pageNum);
 
     /**
+     * 根据创建时间查询问题分页列表
+     * @param pageNum 页码
+     * @return
+     */
+    List<BbsQuestion> queryBbsQuestionPageListOrderByGmtCreate(Integer pageNum);
+
+    /**
      * 获取问题页数
      * @param pageSize 每页多少条记录
      * @return Long     总页数
      */
     Long getBbsQuestionPages(Integer pageSize);
+
+    /**
+     * 根据问题id查找问题
+     * @param bbsQuestionId 问题id
+     * @return BbsQuestion  问题实体类
+     */
+    BbsQuestion queryBbsQuestionByQuestionId(Long bbsQuestionId);
 }

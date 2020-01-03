@@ -1,5 +1,6 @@
 package com.nice.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.validation.constraints.Past;
@@ -17,12 +18,14 @@ public class BaseEntity implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Past(message = "日期输入有误")
     private LocalDateTime gmtCreate;
 
     /**
      * 更新时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Past(message = "日期输入有误")
     private LocalDateTime gmtModify;
 }

@@ -25,4 +25,11 @@ public interface BbsQuestionMapper  {
      * @return Long
      */
     Long queryBbsQuestionCount();
+
+    /**
+     * 根据问题id查找问题
+     * @param bbsQuestionId 问题Id
+     * @return  BbsQuestion  问题实体类
+     */
+    BbsQuestion queryBbsQuestionByQuestionId(Long bbsQuestionId);
 }

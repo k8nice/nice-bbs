@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -48,7 +45,7 @@ public class QuestionController {
     private BbsQuestionService bbsQuestionService;
 
     /**
-     * 访问问题列表页面
+     * 访问问题分页列表页面
      *
      * @return "/question/question_list" 问题列表页面的url
      */
@@ -64,8 +61,82 @@ public class QuestionController {
         return QUESTION_PREFIX + "list";
     }
 
+    /**
+     * 根据问题id访问问题
+     * @param model
+     * @param bbsQuestionId
+     * @return
+     */
+    @GetMapping("/content/{questionId}")
+    public String accessQuestionContent(Model model,@PathVariable  Long questionId ) {
+        model.addAttribute("question",bbsQuestionService.queryBbsQuestionByQuestionId(questionId));
+        return QUESTION_PREFIX+"content";
+    }
+
+    /**
+     * 默认访问问题列表
+     * @param model
+     * @param pageNum
+     * @return
+     */
     @GetMapping("/list")
-    public String accessQuestionListByPage(Model model,Long pageNum) {
+    public String defaultAccessQuestionList(Model model,Long pageNum) {
+        Long pages = bbsQuestionService.getBbsQuestionPages(10);
+        List<Integer> pagesList = new ArrayList<>();
+        for (int i =1;i<=pages;i++) {
+            pagesList.add(i);
+        }
+        model.addAttribute("pages",pagesList);
+        model.addAttribute("questions",bbsQuestionService.queryBbsQuestionList());
+        return QUESTION_PREFIX + "list";
+    }
+
+
+
+
+    /**
+     * 查询最新文章列表
+     * @param model
+     * @return
+     */
+    @GetMapping("/list/new")
+    public String accessNewQuestionList(Model model) {
+        Long pages = bbsQuestionService.getBbsQuestionPages(10);
+        List<Integer> pagesList = new ArrayList<>();
+        for (int i =1;i<=pages;i++) {
+            pagesList.add(i);
+        }
+        model.addAttribute("pages",pagesList);
+        model.addAttribute("questions",bbsQuestionService.queryBbsQuestionPageListOrderByGmtCreate(1));
+        return QUESTION_PREFIX + "list";
+    }
+
+    /**
+     * 查询最新文章分页列表
+     * @param model
+     * @param pageNum
+     * @return
+     */
+    @GetMapping("/list/new/{pageNum}")
+    public String accessNewQuestionListByPage(Model model,@PathVariable Integer pageNum) {
+        Long pages = bbsQuestionService.getBbsQuestionPages(10);
+        List<Integer> pagesList = new ArrayList<>();
+        for (int i =1;i<=pages;i++) {
+            pagesList.add(i);
+        }
+        model.addAttribute("pages",pagesList);
+        model.addAttribute("questions",bbsQuestionService.queryBbsQuestionPageListOrderByGmtCreate(pageNum));
+        return QUESTION_PREFIX + "list";
+    }
+
+    /**
+     * 查询最热文章列表
+     * @param model
+     * @param pageNum
+     * @return
+     */
+    @GetMapping("/list/hot")
+    public String accessHotQuestionListByPage(Model model,Long pageNum) {
         Long pages = bbsQuestionService.getBbsQuestionPages(10);
         List<Integer> pagesList = new ArrayList<>();
         for (int i =1;i<=pages;i++) {

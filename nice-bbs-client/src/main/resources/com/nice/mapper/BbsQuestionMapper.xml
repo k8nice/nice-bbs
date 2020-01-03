@@ -9,13 +9,13 @@
 <!--    </resultMap>-->
 
     <sql id="bbs_question_columns" >
-        bbs_question_id,bbs_question_name,bbs_question_type,bbs_question_description,
+        bbs_question_id,bbs_question_name,bbs_question_type,bbs_question_description,bbs_question_access_count,
         gmt_create,gmt_modify,bbs_user_id
     </sql>
 
     <sql id="bbs_question_properties">
         #{bbsQuestionId},#{bbsQuestionName},
-        #{bbsQuestionType},#{bbsQuestionDescription},#{gmtCreate},#{gmtModify},#{bbsUserId}
+        #{bbsQuestionType},#{bbsQuestionDescription},#{bbsQuestionAccessCount},#{gmtCreate},#{gmtModify},#{bbsUserId}
     </sql>
     
     <insert id="addQuestion" parameterType="com.nice.domain.BbsQuestion">
@@ -37,5 +37,11 @@
         select
             <include refid="bbs_question_columns" />
         from bbs_question;
+    </select>
+
+    <select id="queryBbsQuestionByQuestionId" resultType="com.nice.domain.BbsQuestion" >
+        select
+        <include refid="bbs_question_columns" />
+        from bbs_question where bbs_question_id = #{bbsQuestionId};
     </select>
 </mapper>

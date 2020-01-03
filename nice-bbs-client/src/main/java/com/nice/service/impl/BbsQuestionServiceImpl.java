@@ -29,6 +29,7 @@ public class BbsQuestionServiceImpl implements BbsQuestionService {
     @Override
     public Boolean addQuestion(BbsQuestion bbsQuestion) {
         LocalDateTime localDateTime = LocalDateTime.now();
+        bbsQuestion.setBbsQuestionAccessCount(0L);
         bbsQuestion.setGmtCreate(localDateTime);
         bbsQuestion.setGmtModify(localDateTime);
         bbsQuestionMapper.addQuestion(bbsQuestion);
@@ -50,6 +51,13 @@ public class BbsQuestionServiceImpl implements BbsQuestionService {
 //        pageInfo.setPageNum(pageNum);
 //        pageInfo.setPageSize(10);
         PageInfo<BbsQuestion> pageInfo = PageHelper.startPage(pageNum, 10).setOrderBy("bbs_question_id desc").doSelectPageInfo(() -> this.bbsQuestionMapper.queryBbsQuestionList());
+//        PageHelper.startPage()
+        return pageInfo.getList();
+    }
+
+    @Override
+    public List<BbsQuestion> queryBbsQuestionPageListOrderByGmtCreate(Integer pageNum) {
+        PageInfo<BbsQuestion> pageInfo = PageHelper.startPage(pageNum, 10).setOrderBy("gmt_create desc").doSelectPageInfo(() -> this.bbsQuestionMapper.queryBbsQuestionList());
 //        PageHelper.startPage()
         return pageInfo.getList();
     }
@@ -80,6 +88,11 @@ public class BbsQuestionServiceImpl implements BbsQuestionService {
         else {
             return pages;
         }
+    }
+
+    @Override
+    public BbsQuestion queryBbsQuestionByQuestionId(Long bbsQuestionId) {
+        return bbsQuestionMapper.queryBbsQuestionByQuestionId(bbsQuestionId);
     }
 
 

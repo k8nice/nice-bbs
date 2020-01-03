@@ -9,7 +9,7 @@ spring:
       jdbc-url: jdbc:mysql://39.97.179.164:3306/nice_bbs?useUnicode=true&characterEncoding=UTF-8&useSSL=false
       username: root
       password: nice
-      idle-timeout: 0
+#      idle-timeout: 0
       minimum-idle: 0
       max-lifetime: 0
     #      driver-class-name: com.alibaba.druid.proxy.DruidDriver
@@ -61,8 +61,15 @@ spring:
               threadsInheritContextClassLoaderOfInitializingThread: true
         #数据库方式
         job-store-type: jdbc
+  #thymeleaf配置
   thymeleaf:
     cache: false
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    servlet:
+      content-type: text/html
+    encoding: UTF-8
 
 
 

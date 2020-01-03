@@ -31,6 +31,11 @@ public class BbsQuestion extends BaseEntity {
     private String bbsQuestionType;
 
     /**
+     * bbs问题访问量
+     */
+    private Long bbsQuestionAccessCount;
+
+    /**
      * bbs问题描述
      */
     private String bbsQuestionDescription;

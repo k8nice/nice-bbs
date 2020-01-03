@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 登录控制类
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 @Api("登录控制类")
 @Controller
 @Slf4j
+@RequestMapping
 public class LoginController {
 
 /*    @Autowired
@@ -41,13 +44,67 @@ public class LoginController {
     private BbsUserMapper bbsUserMapper;
 
     /**
+     * 注入验证码工具
+     */
+//    @Autowired
+//    private DefaultKaptcha captchaProducer;
+
+    /**
      * 访问登录页面
      *
      * @return "login" 登录页面
      */
     @GetMapping("/login")
     @ApiOperation(value = "访问登录页",notes = "返回登录页面")
-    public String accessLoginPage() {
+    public String accessLoginPage(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+/*        byte[] captchaChallengeAsJpeg = null;
+        ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
+        try {
+            //生产验证码字符串并保存到session中
+            String createText = captchaProducer.createText();
+            httpServletRequest.getSession().setAttribute("vrifyCode", createText);
+            //使用生产的验证码字符串返回一个BufferedImage对象并转为byte写入到byte数组中
+            BufferedImage challenge = captchaProducer.createImage(createText);
+            ImageIO.write(challenge, "jpg", jpegOutputStream);
+        } catch (IllegalArgumentException e) {
+            try {
+                httpServletResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+//            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        //定义response输出类型为image/jpeg类型，使用response输出流输出图片的byte数组
+/*        captchaChallengeAsJpeg = jpegOutputStream.toByteArray();
+        httpServletResponse.setHeader("Cache-Control", "no-store");
+        httpServletResponse.setHeader("Pragma", "no-cache");
+        httpServletResponse.setDateHeader("Expires", 0);
+        httpServletResponse.setContentType("image/jpeg");
+        ServletOutputStream responseOutputStream =
+                null;
+        try {
+            responseOutputStream = httpServletResponse.getOutputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            responseOutputStream.write(captchaChallengeAsJpeg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            responseOutputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            responseOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
         return "login";
     }
 
@@ -80,6 +137,7 @@ public class LoginController {
             request.getSession().setAttribute("USER_SESSION",sessionBbsUser);
             return "redirect:/";
         } else {
+            log.error("登录失败");
             return "login";
         }
     }

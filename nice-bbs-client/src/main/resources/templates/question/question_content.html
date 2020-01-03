@@ -1,0 +1,193 @@
+<!-- 添加问题页面 -->
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>添加提问</title>
+        <script>
+            var current_url = window.location.href;
+
+            // Do a shortcut so that be.bazel.build redirect to the build encyclopedia
+            var be_url = new RegExp("^https?://be(\.bazel.build)?/?");
+            if (be_url.test(current_url)) {
+                window.location.replace(current_url.replace(be_url, "https://docs.bazel.build/be/overview.html"));
+            }
+            var be_url = new RegExp("^https?://be(\.bazel.build)?/([a-zA-Z0-9_-]+)([/#](.*))?");
+            if (be_url.test(current_url)) {
+                window.location.replace(current_url.replace(be_url, "https://docs.bazel.build/be/$2.html#$4"));
+            }
+            // And a short to code reviews
+            var cr_url = new RegExp("^https?://cr(\.bazel.build)?/([0-9]+)")
+            if (cr_url.test(current_url)) {
+                window.location.replace(current_url.replace(cr_url, "https://bazel-review.googlesource.com/c/$2"));
+            }
+            // Code review dashboard
+            var cr_url = new RegExp("^https?://cr(\.bazel.build)?/?")
+            if (cr_url.test(current_url)) {
+                window.location.replace(current_url.replace(cr_url, "https://bazel-review.googlesource.com/"));
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}">
+        <script type="text/javascript" rel="script" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+        <script type="text/javascript" rel="script" th:src="@{/js/bootstrap.js}"></script>
+        <script charset="utf-8" th:src="@{/kindeditor/kindeditor-all-min.js}"></script>
+        <script charset="utf-8" th:src="@{/kindeditor/lang/zh-CN.js}"></script>
+        <style type="text/css" rel="stylesheet" >
+            /*.form-group label{*/
+            /*    color: #777777;*/
+            /*   font-size: 15px;*/
+            /*    width: 300px;*/
+            /*}*/
+
+            /*.form-control {*/
+            /*    width: 200px;*/
+            /*}*/
+
+            /*a{*/
+            /*    text-decoration: none;*/
+            /*}*/
+
+            /*li{*/
+            /*    list-style: none;*/
+            /*}*/
+
+            /*#question-form-box {*/
+            /*    width: 500px;*/
+            /*    height: 30px;*/
+            /*    margin-top: 80px;*/
+            /*}*/
+
+            /*.form-group {*/
+            /*    margin-left: 20px;*/
+            /*    margin-top: 35px;*/
+            /*}*/
+        </style>
+    </head>
+    <body>
+    <!-- 引入头部菜单 -->
+        <div th:include="nav_menu_head" ></div>
+    <div    style="text-align: center;width: 1000px">
+        <h1 th:text="${question.bbsQuestionName}"  ></h1>
+        <p class="blog-post-meta"><span th:text="${#temporals.format(question.gmtCreate, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+    </div>
+
+<!--        <div id="question-form-box">-->
+<!--            <form id="question-form" method="post" action="/question/add"   >-->
+<!--                <div class="form-group">-->
+<!--                    <label for="exampleInputQuestionName" >问题名称</label>-->
+<!--                    <input type="text" class="form-control" name="bbsQuestionName"  id="exampleInputQuestionName" placeholder="问题名称">-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--&lt;!&ndash;                    <label for="exampleInputQuestionContent">问题内容</label>&ndash;&gt;-->
+<!--                    <label>问题内容</label>-->
+<!--&lt;!&ndash;                    <input type="text" class="form-control" id="exampleInputQuestionContent" placeholder="问题内容">&ndash;&gt;-->
+<!--                    <textarea id="editor_id" name="content" style="width:700px;height:300px;">-->
+<!--                        问题内容-->
+<!--                    </textarea>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    &lt;!&ndash;                    <label for="exampleInputQuestionContent">问题内容</label>&ndash;&gt;-->
+<!--                    <label>问题类型</label>-->
+<!--                    &lt;!&ndash;                    <input type="text" class="form-control" id="exampleInputQuestionContent" placeholder="问题内容">&ndash;&gt;-->
+<!--                    <ul th:each="bbsQuestionType:${bbsQuestionTypes}">-->
+<!--                        <li><a class="label label-info tag-state" th:id="${'question-type-'+bbsQuestionType.index}"-->
+<!--                               th:text="${bbsQuestionType.bbsQuestionTypeName}" th:onclick="'addTag(\''+${bbsQuestionType.index}+'\')'" ></a></li>-->
+<!--                    </ul>-->
+<!--                    <input type="text"   class="form-control" name="bbsQuestionType" placeholder="Text input" id="question-type-input" readonly="readonly" />-->
+
+<!--                </div>-->
+<!--&lt;!&ndash;                <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label for="exampleInputFile">File input</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input type="file" id="exampleInputFile">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p class="help-block">Example block-level help text here.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="checkbox">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="checkbox"> Check me out&ndash;&gt;-->
+<!--&lt;!&ndash;                    </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                <div class="form-group">-->
+<!--                    <button type="submit" class="btn btn-default btn-primary" onclick="getEditorData()"  >提交问题</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+        <script>
+            //创建富文本编辑器
+            KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id');
+            });
+
+            function getEditorData() {
+                 html = editor.html();
+                 //创建一个隐藏域，提交的时候把富文本编辑器中的文本加入到隐藏域的value属性中
+                 $('#question-form').append("<div class='form-group' ><input type='hidden' name='bbsQuestionDescription' value='"+html+"' ></div>")
+            }
+
+            // alert(typeValue)
+            //添加的标签次数
+            var a = 0;
+            function addTag(status) {
+                var  inputQuestionType = $('#question-type-input').val();
+                //创建一个数组,截取逗号之间的内容
+                    var array = inputQuestionType.split(',');
+                 //获取点击的彩色标签中的文本
+                 var  typeText = $('#question-type-'+status).text();
+                 //如果该标签的class选择器中没有selected属性
+                if (!$('#question-type-'+status).hasClass('selected')){
+                    //alert(status);
+                    var typeValue = $('#question-type-'+status).html();
+                    //添加class,用来判断标签是否被选中
+                    $('#question-type-'+status).addClass('selected');
+                    //在彩色标签前面加上对号图标
+                    $('#question-type-'+status).html('<span class="glyphicon glyphicon-ok" aria-hidden="true"  ></span>'+typeValue);
+                    //如果添加次数在一次或一次以上,就要在后面加逗号
+                    if (a == 0) {
+                        //在文本框中添加彩色标签的值
+                            $('#question-type-input').val(typeValue);
+                            a = a+1;
+                    }
+                    else {
+                        //获取原来文本框的值
+                        var temp = $('#question-type-input').val();
+                            //在原来文本框的value值后面加上逗号和新点击的标签中的value
+                            temp = temp + ',' +typeValue;
+                            // alert(temp);
+                            //添加到input输入框中的value值
+                            $('#question-type-input').val(temp);
+                        }
+                }
+                else {
+                    //把标签中的文本值覆盖标签的html属性
+                    $('#question-type-'+status).html(typeText);
+                    //移除标签中的class选择器
+                    $('#question-type-'+status).removeClass('selected');
+                    //alert()
+                    //如果索引值不等于数组的长度-1或者索引值不等于0或者索引值不等于2
+                    if (status == array.length-1&& status!= 0&&array.length!=2) {
+                        //替换该文本和前面的逗号为空字符串
+                        inputQuestionType = inputQuestionType.replace(','+typeText,'');
+                        // alert(inputQuestionType)
+                        $('#question-type-input').val(inputQuestionType)
+                    }
+                //数组的长度不等于1
+                    else if(array.length!=1) {
+                        // debugger;
+                        //alert(1)
+                        //替换文本和文本后面的逗号为空字符串
+                        inputQuestionType = inputQuestionType.replace(typeText+',','');
+                        $('#question-type-input').val(inputQuestionType)
+                    }
+                    else  {
+                        a = 0;
+                        alert(2)
+                        //如果数组中只有一个值，替换成空字符串
+                        $('#question-type-input').val('')
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
