@@ -8,16 +8,19 @@
 <!--        <id  javaType="java.math.BigInteger"   column="bbs_question_id" property="bbsQuestionId" />-->
 <!--    </resultMap>-->
 
+    <!-- mysql中表的全部字段 -->
     <sql id="bbs_question_columns" >
         bbs_question_id,bbs_question_name,bbs_question_type,bbs_question_description,bbs_question_access_count,
         gmt_create,gmt_modify,bbs_user_id
     </sql>
 
+    <!-- 实体类中的全部属性 -->
     <sql id="bbs_question_properties">
         #{bbsQuestionId},#{bbsQuestionName},
         #{bbsQuestionType},#{bbsQuestionDescription},#{bbsQuestionAccessCount},#{gmtCreate},#{gmtModify},#{bbsUserId}
     </sql>
-    
+
+    <!-- 新增提问 -->
     <insert id="addQuestion" parameterType="com.nice.domain.BbsQuestion">
         insert into bbs_question
             <trim prefix="(" suffix=")">
@@ -29,16 +32,19 @@
             </trim>
     </insert>
 
+    <!-- 获取提问数量 -->
     <select id="queryBbsQuestionCount" resultType="java.lang.Long" >
         select count(bbs_question_id) from bbs_question;
     </select>
 
+    <!-- 获取全部问题集合 -->
     <select id="queryBbsQuestionList" resultType="com.nice.domain.BbsQuestion" >
         select
             <include refid="bbs_question_columns" />
         from bbs_question;
     </select>
 
+    <!-- 根据问题ID获取问题 -->
     <select id="queryBbsQuestionByQuestionId" resultType="com.nice.domain.BbsQuestion" >
         select
         <include refid="bbs_question_columns" />

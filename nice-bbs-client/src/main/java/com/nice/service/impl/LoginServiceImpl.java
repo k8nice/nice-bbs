@@ -10,6 +10,8 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+//import com.nice.config.DynamicDataSource;
+
 /**
  * 登录服务实现类
  *
@@ -24,7 +26,8 @@ public class LoginServiceImpl implements LoginService {
     /**
      * 注入bbs用户Mapper
      */
-    @Autowired(required = false)
+//    @Qualifier("ds0")
+    @Autowired
     private BbsUserMapper bbsUserMapper;
 
     /**

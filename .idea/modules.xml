@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/nice-bbs.iml" filepath="$PROJECT_DIR$/.idea/nice-bbs.iml" />
       <module fileurl="file://$PROJECT_DIR$/nice-bbs-client/nice-bbs-client.iml" filepath="$PROJECT_DIR$/nice-bbs-client/nice-bbs-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nice-bbs-server/nice-bbs-server.iml" filepath="$PROJECT_DIR$/nice-bbs-server/nice-bbs-server.iml" />
     </modules>
   </component>
 </project>

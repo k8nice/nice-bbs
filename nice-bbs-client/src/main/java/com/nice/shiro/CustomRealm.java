@@ -16,7 +16,6 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
@@ -40,20 +39,24 @@ public class CustomRealm extends AuthorizingRealm {
 /*    @Autowired
     private UserDao userDao;*/
 
-
-    @Autowired(required = false)
+    @Autowired
+//    @Qualifier("ds0")
     private  BbsUserMapper bbsUserMapper;
 
-    @Autowired(required = false)
+    @Autowired
+//    @Qualifier("ds0")
     private  BbsUserRoleMapper bbsUserRoleMapper;
 
-    @Autowired(required = false)
+    @Autowired
+//    @Qualifier("ds0")
     private  BbsRolePermissionMapper bbsRolePermissionMapper;
 
-    @Autowired(required = false)
+    @Autowired
+//    @Qualifier("ds0")
     private  BbsPermissionMapper bbsPermissionMapper;
 
-    @Autowired(required = false)
+    @Autowired
+//    @Qualifier("ds0")
     private  BbsRoleMapper bbsRoleMapper;
 
 //    public static CustomRealm customRealm;
@@ -102,6 +105,7 @@ public class CustomRealm extends AuthorizingRealm {
      * @return 角色名集合
      */
     private Set<String> getRolesByRoleIds(Set<BigInteger> roleIds) {
+//        DynamicDataSource.setDatabaseType(DatabaseType.db0);
         //创建一个HashSet集合
         Set<String> roles = new HashSet<>();
         //lambda表达式遍历角色id
@@ -119,6 +123,7 @@ public class CustomRealm extends AuthorizingRealm {
      * @return  权限集合
      */
     private Set<String> getPermissionsByRoleId(Set<BigInteger> roles) {
+//        DynamicDataSource.setDatabaseType(DatabaseType.db0);
         Set<BigInteger> permissions = new HashSet<>();
         roles.forEach((roleId)->{
             permissions.addAll(bbsRolePermissionMapper.queryBbsPermissionIdByBbsRoleId(roleId));
@@ -133,6 +138,7 @@ public class CustomRealm extends AuthorizingRealm {
     }
 
     private Set<BigInteger> getRoleIdsByUserId(BigInteger bbsUserId) {
+//        DynamicDataSource.setDatabaseType(DatabaseType.db0);
         Set<BigInteger> roleIds = bbsUserRoleMapper.queryBbsRoleIdByBbsUserId(bbsUserId);
         return roleIds;
     }
@@ -163,6 +169,7 @@ public class CustomRealm extends AuthorizingRealm {
      * @return
      */
     private String getPasswordByUserName(String userName) {
+//        DynamicDataSource.setDatabaseType(DatabaseType.db0);
         if (StringUtils.isNotBlank(userName)) {
             String bbsUserPassword = bbsUserMapper.queryBbsUserPasswordByBbsUserName(userName);
             return bbsUserPassword;

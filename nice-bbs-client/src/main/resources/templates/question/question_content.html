@@ -69,9 +69,10 @@
     <body>
     <!-- 引入头部菜单 -->
         <div th:include="nav_menu_head" ></div>
-    <div    style="text-align: center;width: 1000px">
+    <div    style="margin-left: 200px;width: 1000px">
         <h1 th:text="${question.bbsQuestionName}"  ></h1>
         <p class="blog-post-meta"><span th:text="${#temporals.format(question.gmtCreate, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+        <h3 th:text="${question.bbsQuestionDescription}" class="blog-post-content" ></h3>
     </div>
 
 <!--        <div id="question-form-box">-->
@@ -126,68 +127,24 @@
                  $('#question-form').append("<div class='form-group' ><input type='hidden' name='bbsQuestionDescription' value='"+html+"' ></div>")
             }
 
-            // alert(typeValue)
-            //添加的标签次数
-            var a = 0;
-            function addTag(status) {
-                var  inputQuestionType = $('#question-type-input').val();
-                //创建一个数组,截取逗号之间的内容
-                    var array = inputQuestionType.split(',');
-                 //获取点击的彩色标签中的文本
-                 var  typeText = $('#question-type-'+status).text();
-                 //如果该标签的class选择器中没有selected属性
-                if (!$('#question-type-'+status).hasClass('selected')){
-                    //alert(status);
-                    var typeValue = $('#question-type-'+status).html();
-                    //添加class,用来判断标签是否被选中
-                    $('#question-type-'+status).addClass('selected');
-                    //在彩色标签前面加上对号图标
-                    $('#question-type-'+status).html('<span class="glyphicon glyphicon-ok" aria-hidden="true"  ></span>'+typeValue);
-                    //如果添加次数在一次或一次以上,就要在后面加逗号
-                    if (a == 0) {
-                        //在文本框中添加彩色标签的值
-                            $('#question-type-input').val(typeValue);
-                            a = a+1;
-                    }
-                    else {
-                        //获取原来文本框的值
-                        var temp = $('#question-type-input').val();
-                            //在原来文本框的value值后面加上逗号和新点击的标签中的value
-                            temp = temp + ',' +typeValue;
-                            // alert(temp);
-                            //添加到input输入框中的value值
-                            $('#question-type-input').val(temp);
-                        }
-                }
-                else {
-                    //把标签中的文本值覆盖标签的html属性
-                    $('#question-type-'+status).html(typeText);
-                    //移除标签中的class选择器
-                    $('#question-type-'+status).removeClass('selected');
-                    //alert()
-                    //如果索引值不等于数组的长度-1或者索引值不等于0或者索引值不等于2
-                    if (status == array.length-1&& status!= 0&&array.length!=2) {
-                        //替换该文本和前面的逗号为空字符串
-                        inputQuestionType = inputQuestionType.replace(','+typeText,'');
-                        // alert(inputQuestionType)
-                        $('#question-type-input').val(inputQuestionType)
-                    }
-                //数组的长度不等于1
-                    else if(array.length!=1) {
-                        // debugger;
-                        //alert(1)
-                        //替换文本和文本后面的逗号为空字符串
-                        inputQuestionType = inputQuestionType.replace(typeText+',','');
-                        $('#question-type-input').val(inputQuestionType)
-                    }
-                    else  {
-                        a = 0;
-                        alert(2)
-                        //如果数组中只有一个值，替换成空字符串
-                        $('#question-type-input').val('')
-                    }
-                }
+            var bbsQuestionDescription =   $('.blog-post-content').html();
+
+            if (bbsQuestionDescription == null || bbsQuestionDescription == undefined) {
+                //return '';
+            } else {
+                bbsQuestionDescription  = bbsQuestionDescription
+                    .replace(/&lt;/g, "<")
+                    .replace(/&gt;/g, ">")
+                    .replace(/&quot;/g, "\"")
+                    .replace(/&apos;/g, "'")
+                    .replace(/&amp;/g, "&")
+                    .replace(/&nbsp;/g, '').replace(/<\/?.+?\/?>/g, '').replace(/<[^>]+>/g, "")
+
+                //  return tem;
             }
+            $('.blog-post-content').html(bbsQuestionDescription);
+
+
         </script>
     </body>
 </html>

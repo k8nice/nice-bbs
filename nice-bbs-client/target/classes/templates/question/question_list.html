@@ -96,7 +96,7 @@
                     <!-- December 23, 2013 by Jacob -->
                     <div class="blog-post" th:each="question:${questions}">
                         <h2 class="blog-post-title" th:text="${question.bbsQuestionName}"></h2>
-                        <p class="blog-post-meta"><scan th:text="${question.gmtCreate}">January 1, 2014 </scan> by <a href="#" th:text="${question.bbsUserId}">Mark</a></p>
+                        <p class="blog-post-meta"><scan th:text="${#temporals.format(question.gmtCreate, 'yyyy-MM-dd HH:mm:ss')}">January 1, 2014 </scan> by <a href="#" th:text="${question.bbsUserId}">Mark</a>&nbsp;&nbsp;被浏览<span th:text="${question.bbsQuestionAccessCount}"></span>次</p>
                         <p class="blog-post-content" th:text="${question.bbsQuestionDescription}"></p>
 <!--                        <p class="blog-post-meta"><scan th:text="${question.gmtCreate}">January 1, 2014 </scan> by <a href="#" th:text="${question.bbsUserId}">Mark</a></p>-->
 

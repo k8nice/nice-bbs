@@ -16,6 +16,8 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
 
 
+
+
   #解决bean重复定义
   main:
     allow-bean-definition-overriding: true
@@ -23,6 +25,7 @@ spring:
   redis:
     host: 39.97.179.164
     port: 6380
+
 
 
   quartz:
@@ -70,6 +73,11 @@ spring:
     servlet:
       content-type: text/html
     encoding: UTF-8
+  jta:
+    atomikos:
+      properties:
+        log-base-dir: ./logs
+    transaction-manager-id: txManager
 
 
 
@@ -87,4 +95,45 @@ mybatis:
 
 logging:
   config: classpath:log4j2.xml
+
+#sharding:
+    ##  jdbc:
+    ##    datasource:
+    ##      names: ds0,ds1
+    ##      ds0:
+    ###        type:  com.zaxxer.hikari.HikariDataSource
+    ##        driver-class-name: com.mysql.jdbc.Driver
+    ##        url: jdbc:mysql://39.97.179.164:3306/nice_bbs?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    ##        username: root
+    ##        password: nice
+    ##      ds1:
+    ###        type:  com.zaxxer.hikari.HikariDataSource
+    ##        driver-class-name: com.mysql.jdbc.Driver
+    ##        url: jdbc:mysql://39.97.179.164:3306/nice_bbs1?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    ##        username: root
+    ##        password: nice
+    ##    config:
+    ##      sharding:
+    ##        props:
+    ##          sql.show: true
+    ##        tables:
+    ##          bbs_question:
+    ##            actualDataNodes: ds${0..1}.bbs_question${0..1}
+    ##            databaseStrategy:
+    ##              inline:
+    ##                shardingColumn: bbs_question_id
+    ##                algorithmExpression: ds${bbs_question_id % 2}
+    ##            tableStrategy:
+    ##              inline:
+    ##                shardingColumn: bbs_question_type
+    ##                algorithmExpression: ds${bbs_question_type % 2}
+    ##            keyGeneratorColumnName: bbs_question_id
+    ##      masterslave:
+    ##        load-balance-algorithm-type: round_robin
+    ##        name: db1
+  ##        master-data-source-name: db0
+  ##        slave-data-source-names: db1
+
+
+
 #  level: info

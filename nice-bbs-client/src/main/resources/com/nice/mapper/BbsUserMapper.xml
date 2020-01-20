@@ -5,17 +5,17 @@
 <mapper namespace="com.nice.mapper.BbsUserMapper">
     <!-- 根据bbs用户名获取bbs用户id -->
     <select id="queryBbsUserIdByBbsUserName" parameterType="java.lang.String" resultType="java.math.BigInteger">
-        select bbs_user_id from bbs_user where bbs_user_name = #{bbsUserName};
+        select bbs_user_id from nice_bbs.bbs_user where bbs_user_name = #{bbsUserName};
     </select>
 
     <!-- 根据bbs用户名获取bbs用户密码 -->
     <select id="queryBbsUserPasswordByBbsUserName" parameterType="java.lang.String" resultType="java.lang.String">
-        select bbs_user_password from bbs_user where bbs_user_name = #{bbsUserName};
+        select bbs_user_password from nice_bbs.bbs_user where bbs_user_name = #{bbsUserName};
     </select>
 
     <!-- 根据bbs用户名获取盐值 -->
     <select id="querySaltByBbsUserName" parameterType="java.lang.String" resultType="java.lang.String">
-        select salt from bbs_user where bbs_user_name=#{bbsUserName};
+        select salt from nice_bbs.bbs_user where bbs_user_name=#{bbsUserName};
     </select>
 
 </mapper>
